@@ -1,30 +1,8 @@
-//
-// The MIT License (MIT)
-//
-// Copyright (c) 2017 Tommaso Madonia
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in all
-// copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-// SOFTWARE.
-//
 
 import Foundation
 import UIKit
 import SwiftSH
+import SwiftUI
 
 class ShellViewController: UIViewController, SSHViewController {
     
@@ -65,6 +43,17 @@ class ShellViewController: UIViewController, SSHViewController {
                     return self.password ?? ""
                 }
             }
+        } else {
+//            let key = """
+//-----BEGIN OPENSSH PRIVATE KEY-----b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAlwAAAAdzc2gtcnNhAAAAAwEAAQAAAIEAq/+kSEsucQMxGGGeS23kmqnofy5dTFp4aoVhV7CBX8ePDbcyJyzw//DERs4TqNkM60ofnb+e+fAyM9gDaqutIisjbar3nSBiPNRPQwAGsLgrJkShUlGNQ1xmgLGenxnsg5H576J6AvVhSOFIoYO7T9yhUuxfa9Za2D+/2EUTahEAAAIg0m+KcdJvinEAAAAHc3NoLXJzYQAAAIEAq/+kSEsucQMxGGGeS23kmqnofy5dTFp4aoVhV7CBX8ePDbcyJyzw//DERs4TqNkM60ofnb+e+fAyM9gDaqutIisjbar3nSBiPNRPQwAGsLgrJkShUlGNQ1xmgLGenxnsg5H576J6AvVhSOFIoYO7T9yhUuxfa9Za2D+/2EUTahEAAAADAQABAAAAgQCePGliTTBjrkELojtkP6yyEaCg6QHSjeT8css0RmEvwcM9Jg4Q9oqdnF6mmU6C53S4PpBJq5HRdYZqJdA24cw8Abt5VM0P4PvWI7CwrZJzwAMV0SG4EWcNdaROqXbDmyVuS6juvHrfF1Pkwd11ZUFLLL0lBItH5Ti8+yYeuSJbQQAAAEEAzwqjJt1Qux+3oRVnAfW6Ig2sn4EDV52hDjhK+C9Mt4ZBNo/EDas4jfRrt9VcrrizlinIRthXC8L54+cL307f9QAAAEEA2g4iL/z1NJGQuE0ReJC3NU9ggAtbbRrHvO3yA433+9OSzSW0uVc6E01009/7AzcuddL5GOdPQkOdlN/dv2A8KQAAAEEAye3KWQF41nsDq8j5Rg9olkezW0wRPxFPouk/UfgOSjQ6LBJ4NRwpsZsf5gOc8yudG0/g2i5EzWQih6My2QR7qQAAACVqYWtlc2lsdmlhQE1hY0Jvb2stUHJvLTMuYWRkaWd5LW1hbmdvAQIDBA== -----END OPENSSH PRIVATE KEY-----
+//""".data(using: .utf16)
+//                        let pubkey = """
+//            ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQCr/6RISy5xAzEYYZ5LbeSaqeh/Ll1MWnhqhWFXsIFfx48NtzInLPD/8MRGzhOo2QzrSh+dv5758DIz2ANqq60iKyNtqvedIGI81E9DAAawuCsmRKFSUY1DXGaAsZ6fGeyDkfnvonoC9WFI4Uihg7tP3KFS7F9r1lrYP7/YRRNqEQ== jakesilvia@MacBook-Pro-3.addigy-mango
+//            """.data(using: .utf16)
+//
+//            self.authenticationChallenge = .byPublicKeyFromMemory(username: self.username, password: "Stinker00", publicKey: pubkey, privateKey: key!)
+//            print("Starting...")
+//            self.authenticationChallenge = .byPublicKeyFromFile(username: self.username, password: "", publicKey: "testest", privateKey: "/Users/jakesilvia/.ssh/id_rsa")
         }
         
         self.shell = try? SSHShell(host: self.hostname, port: self.port ?? 22, terminal: "vanilla")

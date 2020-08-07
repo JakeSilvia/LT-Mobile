@@ -56,7 +56,7 @@ open class SSHSession {
         self.log = ConsoleLogger(level: .debug, enabled: true)
         self.queue = Queue(label: "SSH Queue", concurrent: false)
         self.session = try sshLibrary.makeSession()
-        self.timeout = 10
+        self.timeout = 100
 
         self.log.info("\(sshLibrary.name) v\(sshLibrary.version)")
     }
@@ -317,6 +317,7 @@ open class SSHSession {
                 
                 case .byPublicKeyFromMemory(let username, let password, let publicKey, let privateKey):
                     // Public Key authentication
+                    print("KEYS: ", publicKey!, privateKey.base64EncodedString())
                     try self.session.authenticateByPublicKeyFromMemory(username, password: password, publicKey: publicKey, privateKey: privateKey)
             }
         }
